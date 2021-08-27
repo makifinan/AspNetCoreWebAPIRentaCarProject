@@ -3,11 +3,12 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete
 {
-    public class InMemoryCarDal : ICarDal
+  public class InMemoryCarDal : ICarDal
     {
         List<Car> _cars;
 
@@ -40,6 +41,11 @@ namespace DataAccess.Concrete
             return _cars;
         }
 
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Car> GetById(int Id)
         {
             return _cars.Where(c => c.BrandId == Id).ToList();
@@ -57,3 +63,4 @@ namespace DataAccess.Concrete
         }
     }
 }
+  
