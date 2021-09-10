@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleApp
@@ -9,12 +10,15 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            //UserManager userManager = new UserManager(new EfUserDal());
 
-            foreach (var car in carManager.GetCarsByColorId(1))
-            {
-                Console.WriteLine(car.Description);
-            }
+            //CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            //customerManager.Add(new Customer { UserId = 1, CompanyName = "İnnMedya" });
+
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Add(new Car { Id = 1, BrandId = 1, CarName = "Audi", ColorId = 1, DailyPrice = 500, Description = "Audi", ModelYear = 2016 });
+
         }
     }
 }
