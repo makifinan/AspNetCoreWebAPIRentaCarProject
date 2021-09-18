@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,16 +19,13 @@ namespace Business.Concrete
             this._carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.CarName.Length<2)
-            {
-                return new ErrorResult("araç adı 2 karakterden fazla olmalı");
-            }
-            if (car.DailyPrice>0)
-            {
-                _carDal.Add(car);
-            }
+            
+            
+            _carDal.Add(car);
+            
             
             return new SuccessDataResult<List<Car>>("Araç eklendi");
         }
